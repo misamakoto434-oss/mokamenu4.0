@@ -23,7 +23,7 @@
     --radius: 14px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  
+
   body {
     background-color: var(--bg);
     color: var(--text);
@@ -108,7 +108,7 @@
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   }
   .brand-sub { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
-  
+
   .work-status-badge {
     font-size: 0.7rem; padding: 3px 9px; border-radius: 999px; font-weight: 600; display: inline-flex; align-items: center; gap: 5px;
     border: 1px solid var(--border); background: rgba(255,255,255,0.04);
@@ -145,7 +145,7 @@
   }
   .lang-box:hover { border-color: var(--accent); }
   .lang-icon { font-size: 0.9rem; }
-  
+
   .native-lang-select {
     background: transparent; color: var(--text); border: none; outline: none;
     font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 600; cursor: pointer; max-width: 165px;
@@ -160,7 +160,7 @@
   }
   .search-box input:focus { border-color: var(--accent); }
   .search-icon { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.78rem; }
-  
+
   .nav-panel {
     max-width: 1100px; margin: 10px auto 0; padding: 0 4px; display: flex; flex-direction: column; gap: 8px;
   }
@@ -174,7 +174,7 @@
   .cat-pill.active { background: var(--accent); color: #120e0a; font-weight: 600; border-color: var(--accent); }
 
   .promo-banner-container {
-    max-width: 1100px; margin: 16px auto 0; padding: 0 16px;
+    max-width: 1100px; margin: 16px auto 0; padding: 0 16px; position: relative; z-index: 20;
   }
   .promo-slider {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px;
@@ -191,18 +191,74 @@
   .promo-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--accent); margin-bottom: 3px; font-weight: 700; }
   .promo-desc { font-size: 0.72rem; color: var(--text-muted); line-height: 1.35; }
 
-  .features-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin-top: 8px;
+  .features-header-line {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 4px 0 4px;
   }
-  .feature-card {
-    background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
-    overflow: hidden; display: flex; flex-direction: column; transition: 0.2s;
+  .features-header-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--accent);
   }
-  .feature-card:hover { border-color: rgba(224, 159, 90, 0.4); transform: translateY(-2px); }
-  .feature-img-wrap { width: 100%; aspect-ratio: 1 / 1; overflow: hidden; background: #16121d; }
-  .feature-img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
-  .feature-card:hover .feature-img { transform: scale(1.05); }
-  .feature-title { padding: 7px 8px; font-size: 0.76rem; font-weight: 600; color: var(--accent); text-align: center; }
+  .features-header-sub {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+  }
+
+  .features-circles-strip {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 8px 2px 10px;
+    scrollbar-width: none;
+  }
+  .features-circles-strip::-webkit-scrollbar {
+    display: none;
+  }
+  .feature-circle-item {
+    flex: 0 0 78px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+    cursor: default;
+    transition: transform 0.2s ease;
+  }
+  .feature-circle-item:hover {
+    transform: translateY(-3px);
+  }
+  .feature-circle-ring {
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    padding: 2.5px;
+    background: linear-gradient(135deg, #f3c183, #c47a35);
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .feature-circle-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--bg);
+    display: block;
+  }
+  .feature-circle-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.2;
+    max-width: 78px;
+    word-break: break-word;
+  }
 
   main { max-width: 1100px; margin: 14px auto 0; padding: 0 16px; position: relative; z-index: 20; }
   .section-title {
@@ -211,22 +267,22 @@
   }
   .menu-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 11px;
   }
-  @media (min-width: 700px) {
+  @media (max-width: 639px) {
     .menu-grid {
-      grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
-      gap: 13px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 9px;
     }
   }
   .card {
     background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
     overflow: hidden; display: flex; flex-direction: column; justify-content: space-between;
-    transition: transform 0.2s; position: relative;
+    transition: transform 0.2s; position: relative; min-width: 0;
   }
   .card:hover { transform: translateY(-2px); border-color: rgba(224, 159, 90, 0.4); }
-  
+
   .card-img-wrap {
     width: 100%; aspect-ratio: 1 / 1; background: linear-gradient(135deg, #231c2e, #16131c);
     position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center;
@@ -234,44 +290,48 @@
   .card-img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .card-weight {
     position: absolute; bottom: 6px; right: 6px; background: rgba(13, 11, 16, 0.85); backdrop-filter: blur(4px);
-    color: var(--text-muted); font-size: 0.6rem; padding: 2px 5px; border-radius: 6px;
+    color: var(--text-muted); font-size: 0.58rem; padding: 2px 5px; border-radius: 6px;
   }
-  .card-body { padding: 9px 10px 6px; }
-  .card-title { font-size: 0.82rem; font-weight: 600; margin-bottom: 3px; line-height: 1.25; }
+  .card-body { padding: 8px 9px 5px; }
+  .card-title { font-size: 0.78rem; font-weight: 600; margin-bottom: 2px; line-height: 1.25; }
   .card-desc {
-    font-size: 0.66rem; color: var(--text-muted); line-height: 1.3; margin-bottom: 4px;
+    font-size: 0.63rem; color: var(--text-muted); line-height: 1.3; margin-bottom: 3px;
     display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
   }
-  
+
   .card-footer {
-    display: flex; align-items: center; justify-content: space-between; gap: 6px;
-    padding: 0 10px 10px;
+    display: flex; align-items: center; justify-content: space-between; gap: 4px; flex-wrap: wrap;
+    padding: 0 9px 9px;
   }
-  .card-price { font-weight: 700; color: var(--accent); font-size: 0.82rem; white-space: nowrap; }
+  .card-price { font-weight: 700; color: var(--accent); font-size: 0.78rem; white-space: nowrap; }
   .btn-add {
-    background: var(--accent); color: #120e0a; border: none; padding: 5px 8px;
-    border-radius: 7px; font-weight: 700; font-family: inherit; font-size: 0.68rem; cursor: pointer;
+    background: var(--accent); color: #120e0a; border: none; padding: 4px 7px;
+    border-radius: 7px; font-weight: 700; font-family: inherit; font-size: 0.65rem; cursor: pointer;
     white-space: nowrap;
   }
 
   .floating-actions {
-    position: fixed; bottom: 16px; right: 16px; z-index: 50;
-    display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end;
+    position: fixed; bottom: 16px; right: 16px; left: 16px; z-index: 50;
+    display: flex; gap: 7px; align-items: center; flex-wrap: wrap; justify-content: flex-end;
+    pointer-events: none;
+  }
+  .floating-actions > button {
+    pointer-events: auto;
   }
   .action-btn-fab {
-    background: rgba(224, 159, 90, 0.15); border: 1px solid var(--accent); color: var(--accent); border-radius: 999px;
-    padding: 10px 14px; font-weight: 700; font-family: inherit; cursor: pointer; font-size: 0.78rem;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5); backdrop-filter: blur(6px); transition: 0.2s;
+    background: rgba(21, 17, 27, 0.92); border: 1px solid var(--accent); color: var(--accent); border-radius: 999px;
+    padding: 9px 12px; font-weight: 700; font-family: inherit; cursor: pointer; font-size: 0.74rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5); backdrop-filter: blur(8px); transition: 0.2s;
   }
-  .action-btn-fab:hover { background: rgba(224, 159, 90, 0.3); }
+  .action-btn-fab:hover { background: rgba(224, 159, 90, 0.28); }
 
   .cart-fab {
     background: var(--accent); color: #120e0a; border: none; border-radius: 999px;
-    padding: 10px 16px; font-weight: 700; font-family: inherit; cursor: pointer; font-size: 0.8rem;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5); display: flex; gap: 8px; align-items: center;
+    padding: 10px 15px; font-weight: 700; font-family: inherit; cursor: pointer; font-size: 0.78rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5); display: flex; gap: 7px; align-items: center;
   }
-  .cart-badge { background: #120e0a; color: var(--accent); padding: 2px 6px; border-radius: 999px; font-size: 0.72rem; }
-  
+  .cart-badge { background: #120e0a; color: var(--accent); padding: 2px 6px; border-radius: 999px; font-size: 0.7rem; }
+
   .overlay {
     position: fixed; inset: 0; background: rgba(0,0,0,0.75); backdrop-filter: blur(6px);
     z-index: 60; display: none; align-items: center; justify-content: center; padding: 16px;
@@ -286,7 +346,28 @@
   .cart-item { display: flex; flex-direction: column; gap: 4px; font-size: 0.85rem; background: rgba(255,255,255,0.03); padding: 8px 10px; border-radius: 6px; }
   .cart-item-header { display: flex; justify-content: space-between; align-items: center; }
   .cart-item-note { font-size: 0.72rem; color: var(--accent); font-style: italic; }
-  
+
+  .random-box {
+    display: flex; flex-direction: column; gap: 10px; margin: 10px 0 14px;
+  }
+  .random-item-card {
+    display: flex; align-items: center; gap: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(224, 159, 90, 0.25);
+    border-radius: 14px; padding: 10px;
+  }
+  .random-item-img {
+    width: 68px; height: 68px; border-radius: 10px; object-fit: cover; flex-shrink: 0;
+  }
+  .random-item-info { flex: 1; min-width: 0; }
+  .random-item-cat { font-size: 0.65rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; }
+  .random-item-name { font-size: 0.88rem; font-weight: 700; margin: 2px 0; }
+  .random-item-desc { font-size: 0.7rem; color: var(--text-muted); line-height: 1.3; }
+  .random-item-price { font-size: 0.82rem; font-weight: 700; color: var(--accent); margin-top: 4px; }
+  .random-actions-row {
+    display: flex; gap: 8px; margin-top: 6px;
+  }
+
   .form-field { margin-bottom: 10px; }
   .form-field label { display: block; font-size: 0.7rem; color: var(--text-muted); margin-bottom: 3px; }
   .form-field input, .form-field select, .form-field textarea {
@@ -300,13 +381,27 @@
   }
   .form-field.checkbox-row input { width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; }
 
+  #interactiveMap { height: 180px; border-radius: 10px; margin-top: 6px; z-index: 1; }
+  .btn-gps {
+    background: rgba(224, 159, 90, 0.15); border: 1px solid var(--accent); color: var(--accent);
+    padding: 6px 10px; border-radius: 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer; width: 100%;
+  }
+  .map-tip { font-size: 0.68rem; color: var(--text-muted); margin-top: 4px; }
+
+  .quick-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    background: rgba(224, 159, 90, 0.15); border: 1px solid rgba(224, 159, 90, 0.4);
+    color: var(--accent); padding: 4px 9px; border-radius: 999px; font-size: 0.74rem; cursor: pointer;
+  }
+
   .admin-table-item {
-    display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.03);
+    display: flex; justify-content: space-between; align-items: center; gap: 8px; background: rgba(255,255,255,0.03);
     padding: 8px 10px; border-radius: 8px; margin-bottom: 6px; font-size: 0.8rem;
   }
-  .admin-actions { display: flex; gap: 6px; }
+  .admin-actions { display: flex; gap: 6px; flex-shrink: 0; }
 
   .btn-primary { width: 100%; background: var(--accent); color: #120e0a; border: none; padding: 10px; border-radius: 10px; font-weight: 700; font-family: inherit; cursor: pointer; margin-top: 8px; font-size: 0.9rem; }
+  .btn-secondary { width: 100%; background: rgba(224, 159, 90, 0.15); color: var(--accent); border: 1px solid var(--accent); padding: 10px; border-radius: 10px; font-weight: 700; font-family: inherit; cursor: pointer; margin-top: 8px; font-size: 0.86rem; }
   .btn-edit { background: #38bdf8; color: #120e0a; border: none; padding: 4px 8px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.75rem; }
   .btn-danger { background: #f87171; color: #120e0a; border: none; padding: 4px 8px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.75rem; }
   .close-btn { background: none; border: none; color: var(--text-muted); font-size: 1.1rem; float: right; cursor: pointer; }
@@ -317,9 +412,10 @@
   }
   body.light-theme .side-banner { opacity: 0.12; filter: brightness(1.1); }
   body.light-theme header { background: rgba(244, 240, 234, 0.92); }
+  body.light-theme .action-btn-fab { background: rgba(255, 255, 255, 0.92); }
   body.light-theme .modal { background: #ffffff; border-color: rgba(184, 115, 51, 0.3); }
   body.light-theme .form-field input, body.light-theme .form-field select, body.light-theme .form-field textarea { background: #eae3d5; color: #1a161f; }
-  body.light-theme .cart-item, body.light-theme .admin-table-item { background: rgba(0,0,0,0.02); }
+  body.light-theme .cart-item, body.light-theme .admin-table-item, body.light-theme .random-item-card { background: rgba(0,0,0,0.03); }
   body.light-theme .native-lang-select option { background: #ffffff; color: #1a161f; }
 </style>
 </head>
@@ -341,7 +437,7 @@
       <button class="admin-btn notranslate" onclick="openAdminLogin()" title="Панель администратора">⚙️ Админ</button>
     </div>
     <div class="phones-bar notranslate">
-      📞 <a href="tel:+996880880216">+996 880 880 216</a> | 
+      📞 <a href="tel:+996508880216">+996 508 880 216</a> |
       <a href="tel:+996555071497">+996 555 071 497</a>
     </div>
     <div class="header-controls">
@@ -365,13 +461,30 @@
 <main id="menuContainer"></main>
 
 <div class="floating-actions">
-  <button class="action-btn-fab notranslate" onclick="openBookingModal()">📅 Забронировать</button>
+  <button class="action-btn-fab notranslate" onclick="openRandomModal()">🎲 Мне повезёт</button>
+  <button class="action-btn-fab notranslate" onclick="openBookingModal()">📅 Бронь</button>
   <button class="action-btn-fab notranslate" onclick="openWaiterModal()">🛎 Официант</button>
   <button class="cart-fab" id="openCartBtn">
     <span>Заказ</span>
     <span class="cart-badge notranslate" id="cartCount">0</span>
     <span class="notranslate" id="cartTotalFab">0 сом</span>
   </button>
+</div>
+
+<div class="overlay" id="randomModalOverlay">
+  <div class="modal">
+    <button class="close-btn notranslate" onclick="closeRandomModal()">✕</button>
+    <h2 class="modal-title">🎲 Случайный выбор MOKA</h2>
+    <div style="display:flex; gap:6px; margin-bottom:10px;">
+      <button class="cat-pill active" id="randModeComboBtn" onclick="setRandomMode('combo')">🍽 Блюдо + Напиток</button>
+      <button class="cat-pill" id="randModeSingleBtn" onclick="setRandomMode('single')">✨ Одно случайное</button>
+    </div>
+    <div class="random-box" id="randomResultBox"></div>
+    <div class="random-actions-row">
+      <button class="btn-secondary" style="margin-top:0; flex:1;" onclick="rollRandomSelection()">🔄 Крутить ещё</button>
+      <button class="btn-primary" style="margin-top:0; flex:1;" onclick="addRandomToCart()">+ Добавить всё в заказ</button>
+    </div>
+  </div>
 </div>
 
 <div class="overlay" id="adminLoginOverlay">
@@ -390,7 +503,7 @@
   <div class="modal" style="max-width: 600px;">
     <button class="close-btn notranslate" onclick="closeAdminPanel()">✕</button>
     <h2 class="modal-title">Панель управления</h2>
-    
+
     <div style="display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap;">
       <button class="btn-primary" style="margin-top:0; flex:1;" onclick="switchAdminTab('menu')">🍽 Меню</button>
       <button class="btn-primary" style="margin-top:0; flex:1; background: rgba(224,159,90,0.2);" onclick="switchAdminTab('promo')">🎁 Акции</button>
@@ -409,7 +522,7 @@
         <label>Загрузить картинку (JPG/PNG с компьютера)</label>
         <input type="file" id="newImageFile" accept="image/*">
       </div>
-      
+
       <button class="btn-primary" id="saveMenuBtn" onclick="saveMenuItem()">Добавить в меню</button>
       <button id="cancelEditBtn" class="btn-danger" style="display:none; width:100%; margin-top:8px; padding:8px;" onclick="resetMenuForm()">Отменить редактирование</button>
 
@@ -418,14 +531,16 @@
     </div>
 
     <div id="adminTabPromo" style="display: none;">
-      <h3 style="font-size: 1rem; color: var(--accent); margin-bottom: 8px;">Добавить акцию / баннер</h3>
+      <h3 id="promoFormModeTitle" style="font-size: 1rem; color: var(--accent); margin-bottom: 8px;">Добавить акцию / баннер</h3>
+      <input type="hidden" id="editPromoId" value="">
       <div class="form-field"><label>Заголовок акции</label><input type="text" id="promoTitleInput" placeholder="Счастливые часы..."></div>
       <div class="form-field"><label>Описание акции</label><textarea id="promoDescInput" placeholder="Условия акции..."></textarea></div>
       <div class="form-field">
         <label>Картинка акции (файл с компьютера)</label>
         <input type="file" id="promoImageFile" accept="image/*">
       </div>
-      <button class="btn-primary" onclick="addNewPromoItem()">Опубликовать акцию</button>
+      <button class="btn-primary" id="savePromoBtn" onclick="savePromoItem()">Опубликовать акцию</button>
+      <button id="cancelPromoEditBtn" class="btn-danger" style="display:none; width:100%; margin-top:8px; padding:8px;" onclick="resetPromoForm()">Отменить редактирование</button>
 
       <h3 style="font-size: 1rem; color: var(--accent); margin: 16px 0 8px;">Активные акции</h3>
       <div id="adminPromoList" style="max-height: 200px; overflow-y: auto;"></div>
@@ -500,7 +615,10 @@
   <div class="modal">
     <button class="close-btn notranslate" onclick="closeWaiterModal()">✕</button>
     <h2 class="modal-title">Вызов официанта</h2>
-    <div class="form-field"><label>Номер вашего столика</label><input type="text" id="waiterTableNum" placeholder="Например: Столик №6"></div>
+    <div class="form-field">
+      <label>Номер вашего столика</label>
+      <input type="text" id="waiterTableNum" placeholder="Например: Столик №6">
+    </div>
     <div class="form-field">
       <label>Что вам требуется?</label>
       <select id="waiterReason">
@@ -562,6 +680,7 @@
 
 <script>
 const ADMIN_PASS = "061208";
+const WA_PHONE = "996508880216";
 
 const FIREBASE_CONFIG = {
   apiKey: "AIzaSyAUgzOPH4PSDxMMZLS42QR7l_3BoohPuPk",
@@ -575,8 +694,29 @@ const FIREBASE_CONFIG = {
 firebase.initializeApp(FIREBASE_CONFIG);
 const db = firebase.firestore();
 
+function safeStorageSet(key, value) {
+  try {
+    localStorage.setItem(key, value);
+  } catch (err) {
+    try {
+      localStorage.removeItem('moka_menu');
+      localStorage.removeItem('moka_promo');
+      localStorage.removeItem('moka_features');
+      localStorage.setItem(key, value);
+    } catch (err2) {}
+  }
+}
+
+function safeStorageGet(key) {
+  try {
+    return localStorage.getItem(key);
+  } catch (err) {
+    return null;
+  }
+}
+
 function createSnow() {
-  const snowflakesCount = 30;
+  const snowflakesCount = 24;
   for (let i = 0; i < snowflakesCount; i++) {
     const flake = document.createElement('div');
     flake.classList.add('snowflake');
@@ -645,8 +785,18 @@ const ALL_NATIVE_LANGUAGES = [
 
 const P = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=600`;
 
+function bustImageCache(imgSrc, versionTag) {
+  if (!imgSrc || typeof imgSrc !== 'string') return imgSrc;
+  if (imgSrc.startsWith('data:')) return imgSrc;
+  const cleanUrl = imgSrc.split('?')[0];
+  if (cleanUrl.includes('images.pexels.com')) {
+    return `${cleanUrl}?auto=compress&cs=tinysrgb&w=600&v=${versionTag}`;
+  }
+  return `${cleanUrl}?v=${versionTag}`;
+}
+
 const DEFAULT_FEATURES = [
-  { id: 1, title: "лаунж-зона", img: P(1571458) },
+  { id: 1, title: "Лаунж-зона", img: P(1571458) },
   { id: 2, title: "Кофейный бар", img: P(302899) },
   { id: 3, title: "Алко-бар", img: P(4342445) },
   { id: 4, title: "Юрта", img: P(769289) },
@@ -656,7 +806,7 @@ const DEFAULT_FEATURES = [
   { id: 8, title: "Мероприятия", img: P(2774556) },
   { id: 9, title: "Фото зона", img: P(1002638) },
   { id: 10, title: "Романтический ужин", img: P(941861) },
-  { id: 11, title: "Скидки на день рождения", img: P(3171837) },
+  { id: 11, title: "День рождения", img: P(3171837) },
   { id: 12, title: "Вечер с костром", img: P(1473335) },
   { id: 13, title: "Игровые акции", img: P(1111585) }
 ];
@@ -842,19 +992,21 @@ const DEFAULT_MENU = [
   { id: 324, category: 'Расходники', name: 'Крафт пакет', price: 50, desc: 'Фирменный крафт пакет', weight: '1 шт', img: P(4109234) }
 ];
 
-let DEFAULT_PROMOS = [
+const DEFAULT_PROMOS = [
   { id: 1, title: "🎄 Новогодний бонус в MOKA", desc: "При заказе зимнего глинтвейна имбирный пряник в подарок!", img: P(4342445) },
   { id: 2, title: "☕️ Счастливые часы кофе", desc: "С 09:00 до 12:00 скидка 20% на все виды капучино и раф.", img: P(302899) }
 ];
 
-let menuData = JSON.parse(localStorage.getItem('moka_menu')) || DEFAULT_MENU;
-let promoData = JSON.parse(localStorage.getItem('moka_promo')) || DEFAULT_PROMOS;
-let featuresData = JSON.parse(localStorage.getItem('moka_features')) || DEFAULT_FEATURES;
+let menuData = DEFAULT_MENU.slice();
+let promoData = DEFAULT_PROMOS.slice();
+let featuresData = DEFAULT_FEATURES.slice();
 
 let cart = [];
 let activeCat = 'Все';
 let search = '';
 let currentNoteItemId = null;
+let randomMode = 'combo';
+let currentRandomSelection = [];
 let map = null;
 let marker = null;
 const DEFAULT_LAT = 42.4907;
@@ -864,89 +1016,131 @@ function getMenuItemsCollection() {
   return db.collection('moka_store').doc('menu').collection('items');
 }
 
-async function seedMenuItemsIndividually(items) {
-  const itemsCol = getMenuItemsCollection();
-  const chunkSize = 200;
-  for (let i = 0; i < items.length; i += chunkSize) {
-    const batch = db.batch();
-    const slice = items.slice(i, i + chunkSize);
-    slice.forEach((item, idx) => {
-      const normalized = { ...item, orderIndex: item.orderIndex ?? (i + idx) };
-      batch.set(itemsCol.doc(String(normalized.id)), normalized);
-    });
-    await batch.commit();
+function saveLightweightMetaCache(keyName, items) {
+  const lightItems = items.map(item => {
+    const copy = { ...item };
+    if (typeof copy.img === 'string' && copy.img.startsWith('data:')) {
+      delete copy.img;
+    }
+    return copy;
+  });
+  safeStorageSet(keyName, JSON.stringify(lightItems));
+}
+
+function loadCachedInitialData() {
+  const cachedMenu = safeStorageGet('moka_menu');
+  const cachedPromo = safeStorageGet('moka_promo');
+  const cachedFeatures = safeStorageGet('moka_features');
+
+  if (cachedMenu) {
+    try {
+      const parsed = JSON.parse(cachedMenu);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        menuData = parsed.map(item => {
+          const fallback = DEFAULT_MENU.find(d => d.id == item.id);
+          return { ...item, img: item.img || (fallback ? fallback.img : P(302899)) };
+        });
+      }
+    } catch (e) {}
   }
+
+  if (cachedPromo) {
+    try {
+      const parsed = JSON.parse(cachedPromo);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        promoData = parsed.map((item, idx) => ({
+          ...item,
+          img: item.img || (DEFAULT_PROMOS[idx] ? DEFAULT_PROMOS[idx].img : P(302899))
+        }));
+      }
+    } catch (e) {}
+  }
+
+  if (cachedFeatures) {
+    try {
+      const parsed = JSON.parse(cachedFeatures);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        featuresData = parsed.map((item, idx) => ({
+          ...item,
+          img: item.img || (DEFAULT_FEATURES[idx] ? DEFAULT_FEATURES[idx].img : P(1571458))
+        }));
+      }
+    } catch (e) {}
+  }
+}
+
+function withTimeout(promise, ms = 2500) {
+  return Promise.race([
+    promise,
+    new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), ms))
+  ]);
 }
 
 async function syncAllDataFromCloud() {
   try {
     const storeRef = db.collection('moka_store');
-    const itemsCol = getMenuItemsCollection();
-    const [menuItemsSnap, legacyMenuDoc, promoDoc, featuresDoc] = await Promise.all([
-      itemsCol.get(),
-      storeRef.doc('menu').get(),
+    const [menuItemsSnap, promoDoc, featuresDoc] = await withTimeout(Promise.all([
+      getMenuItemsCollection().get(),
       storeRef.doc('promo').get(),
       storeRef.doc('features').get()
-    ]);
+    ]), 2800);
+
+    let changed = false;
 
     if (!menuItemsSnap.empty) {
       menuData = menuItemsSnap.docs
         .map(doc => doc.data())
         .sort((a, b) => (a.orderIndex ?? a.id) - (b.orderIndex ?? b.id));
-      localStorage.setItem('moka_menu', JSON.stringify(menuData));
-    } else {
-      const sourceItems = (legacyMenuDoc.exists && Array.isArray(legacyMenuDoc.data().items))
-        ? legacyMenuDoc.data().items
-        : DEFAULT_MENU;
-      menuData = sourceItems.map((item, idx) => ({ ...item, orderIndex: idx }));
-      localStorage.setItem('moka_menu', JSON.stringify(menuData));
-      await seedMenuItemsIndividually(menuData);
+      saveLightweightMetaCache('moka_menu', menuData);
+      changed = true;
     }
 
-    if (promoDoc.exists && Array.isArray(promoDoc.data().items)) {
+    if (promoDoc.exists && Array.isArray(promoDoc.data().items) && promoDoc.data().items.length > 0) {
       promoData = promoDoc.data().items;
-      localStorage.setItem('moka_promo', JSON.stringify(promoData));
-    } else {
-      await storeRef.doc('promo').set({ items: DEFAULT_PROMOS });
+      saveLightweightMetaCache('moka_promo', promoData);
+      changed = true;
     }
 
-    if (featuresDoc.exists && Array.isArray(featuresDoc.data().items)) {
+    if (featuresDoc.exists && Array.isArray(featuresDoc.data().items) && featuresDoc.data().items.length > 0) {
       featuresData = featuresDoc.data().items;
-      localStorage.setItem('moka_features', JSON.stringify(featuresData));
-    } else {
-      await storeRef.doc('features').set({ items: DEFAULT_FEATURES });
+      saveLightweightMetaCache('moka_features', featuresData);
+      changed = true;
     }
 
-    if (!menuData.some(i => i.category === activeCat) && activeCat !== 'Все') {
-      activeCat = 'Все';
+    if (changed) {
+      if (!menuData.some(i => i.category === activeCat) && activeCat !== 'Все') {
+        activeCat = 'Все';
+      }
+      renderPromos();
+      renderCategories();
+      renderMenu();
+      renderAdminLists();
     }
-
-    renderPromos();
-    renderCategories();
-    renderMenu();
-    renderAdminLists();
-  } catch (err) {
-    console.error(err);
-  }
+  } catch (err) {}
 }
 
 async function persistCollection(docId, keyName, items) {
-  localStorage.setItem(keyName, JSON.stringify(items));
+  saveLightweightMetaCache(keyName, items);
   await db.collection('moka_store').doc(docId).set({ items });
 }
 
-function compressImageFile(file, maxWidth = 500, quality = 0.58) {
+function compressImageFile(file, targetSize = 680, quality = 0.74) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = function(event) {
       const img = new Image();
       img.onload = function() {
-        const scale = Math.min(1, maxWidth / img.width);
+        const minSide = Math.min(img.width, img.height);
+        const sx = Math.round((img.width - minSide) / 2);
+        const sy = Math.round((img.height - minSide) / 2);
+        const outSize = Math.min(targetSize, minSide);
         const canvas = document.createElement('canvas');
-        canvas.width = Math.round(img.width * scale);
-        canvas.height = Math.round(img.height * scale);
+        canvas.width = outSize;
+        canvas.height = outSize;
         const ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+        ctx.drawImage(img, sx, sy, minSide, minSide, 0, 0, outSize, outSize);
         resolve(canvas.toDataURL('image/jpeg', quality));
       };
       img.onerror = reject;
@@ -971,14 +1165,14 @@ function checkWorkStatus() {
 }
 
 function loadSavedClientData() {
-  const saved = localStorage.getItem('moka_client_info');
+  const saved = safeStorageGet('moka_client_info');
   if (saved) {
     const input = document.getElementById('clientPhoneName');
     if (input) input.value = saved;
   }
 }
 
-function saveClientData(val) { localStorage.setItem('moka_client_info', val); }
+function saveClientData(val) { safeStorageSet('moka_client_info', val); }
 
 function initLanguageDropdown() {
   const select = document.getElementById('nativeLangSelect');
@@ -1015,7 +1209,7 @@ function renderPromos() {
     <div class="promo-slider">
       ${promoData.map(p => `
         <div class="promo-card">
-          <img class="promo-img" src="${p.img}" alt="${p.title}" onerror="this.src='${makeFallbackSvg(p.title)}';">
+          <img class="promo-img" src="${p.img || ''}" alt="${p.title}" onerror="this.src='${makeFallbackSvg(p.title)}';">
           <div class="promo-content">
             <div class="promo-title">${p.title}</div>
             <div class="promo-desc">${p.desc}</div>
@@ -1024,14 +1218,18 @@ function renderPromos() {
       `).join('')}
     </div>
 
-    <h2 class="section-title">✨ Атмосфера & Услуги MOKA</h2>
-    <div class="features-grid">
+    <div class="features-header-line">
+      <div class="features-header-title">✨ Атмосфера & Услуги MOKA</div>
+      <div class="features-header-sub">Ждём в гости • 🤍</div>
+    </div>
+
+    <div class="features-circles-strip">
       ${featuresData.map(f => `
-        <div class="feature-card">
-          <div class="feature-img-wrap">
-            <img class="feature-img" src="${f.img}" alt="${f.title}" loading="lazy" onerror="this.src='${makeFallbackSvg(f.title)}';">
+        <div class="feature-circle-item" title="${f.title}">
+          <div class="feature-circle-ring">
+            <img class="feature-circle-img" src="${f.img || ''}" alt="${f.title}" loading="lazy" onerror="this.src='${makeFallbackSvg(f.title)}';">
           </div>
-          <div class="feature-title">${f.title}</div>
+          <div class="feature-circle-label">${f.title}</div>
         </div>
       `).join('')}
     </div>
@@ -1067,7 +1265,7 @@ function renderMenu() {
       ${items.map(item => `
         <div class="card">
           <div class="card-img-wrap">
-            <img class="card-img" src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.onerror=null;this.src='${makeFallbackSvg(item.name)}';">
+            <img class="card-img" src="${item.img || ''}" alt="${item.name}" loading="lazy" onerror="this.onerror=null;this.src='${makeFallbackSvg(item.name)}';">
             <span class="card-weight notranslate">${item.weight || ''}</span>
           </div>
           <div class="card-body">
@@ -1084,8 +1282,71 @@ function renderMenu() {
   `).join('') || '<div style="color:#9e96a8; text-align:center; padding:40px;">Ничего не найдено</div>';
 }
 
+window.openRandomModal = function() {
+  document.getElementById('randomModalOverlay').classList.add('open');
+  rollRandomSelection();
+};
+
+window.closeRandomModal = function() {
+  document.getElementById('randomModalOverlay').classList.remove('open');
+};
+
+window.setRandomMode = function(mode) {
+  randomMode = mode;
+  document.getElementById('randModeComboBtn').classList.toggle('active', mode === 'combo');
+  document.getElementById('randModeSingleBtn').classList.toggle('active', mode === 'single');
+  rollRandomSelection();
+};
+
+function pickRandomFromArray(arr) {
+  if (!arr || arr.length === 0) return null;
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+window.rollRandomSelection = function() {
+  const excludedCats = ['Добавки', 'Добавки к напиткам', 'Расходники'];
+  const drinkCats = ['Напитки & Кофе', 'Лимонады', 'Смузи', 'Милкшейки', 'Чаи'];
+  const usable = menuData.filter(i => !excludedCats.includes(i.category));
+
+  if (randomMode === 'single') {
+    const picked = pickRandomFromArray(usable.length ? usable : menuData);
+    currentRandomSelection = picked ? [picked] : [];
+  } else {
+    const foods = usable.filter(i => !drinkCats.includes(i.category) && i.category !== 'Алкоголь');
+    const drinks = usable.filter(i => drinkCats.includes(i.category));
+    const foodPick = pickRandomFromArray(foods.length ? foods : usable);
+    const drinkPick = pickRandomFromArray(drinks.length ? drinks : usable);
+    currentRandomSelection = [foodPick, drinkPick].filter(Boolean);
+  }
+
+  const box = document.getElementById('randomResultBox');
+  if (currentRandomSelection.length === 0) {
+    box.innerHTML = '<div style="color:var(--text-muted); text-align:center;">Меню пусто</div>';
+    return;
+  }
+
+  box.innerHTML = currentRandomSelection.map(item => `
+    <div class="random-item-card">
+      <img class="random-item-img" src="${item.img || ''}" alt="${item.name}" onerror="this.src='${makeFallbackSvg(item.name)}';">
+      <div class="random-item-info">
+        <div class="random-item-cat">${item.category}</div>
+        <div class="random-item-name">${item.name}</div>
+        <div class="random-item-desc">${item.desc || ''}</div>
+        <div class="random-item-price notranslate">${item.price} сом ${item.weight ? '• ' + item.weight : ''}</div>
+      </div>
+    </div>
+  `).join('');
+};
+
+window.addRandomToCart = function() {
+  if (!currentRandomSelection || currentRandomSelection.length === 0) return;
+  currentRandomSelection.forEach(item => addToCart(item.id));
+  closeRandomModal();
+};
+
 window.addToCart = function(id) {
   const item = menuData.find(i => i.id === id);
+  if (!item) return;
   const existingIndex = cart.findIndex(i => i.id === id && !i.note);
   if (existingIndex > -1) { cart[existingIndex].qty++; }
   else { cart.push({ ...item, qty: 1, note: '' }); }
@@ -1235,7 +1496,10 @@ function renderAdminLists() {
   promoListEl.innerHTML = promoData.map(p => `
     <div class="admin-table-item">
       <span><b>${p.title}</b></span>
-      <button class="btn-danger" onclick="deletePromoItem(${p.id})">Удалить</button>
+      <div class="admin-actions">
+        <button class="btn-edit" onclick="startEditPromoItem(${p.id})">Изменить</button>
+        <button class="btn-danger" onclick="deletePromoItem(${p.id})">Удалить</button>
+      </div>
     </div>
   `).join('');
 
@@ -1293,7 +1557,8 @@ window.saveMenuItem = async function() {
     return;
   }
 
-  let imgUrl = editId ? null : P(302899);
+  const versionTag = Date.now();
+  let imgUrl = editId ? null : bustImageCache(P(302899), versionTag);
   if (fileInput.files && fileInput.files[0]) {
     imgUrl = await compressImageFile(fileInput.files[0]);
   }
@@ -1304,6 +1569,7 @@ window.saveMenuItem = async function() {
   if (editId) {
     const index = nextMenu.findIndex(m => m.id == editId);
     if (index > -1) {
+      const updatedImg = imgUrl || bustImageCache(nextMenu[index].img, versionTag);
       targetItem = {
         ...nextMenu[index],
         category: cat,
@@ -1311,14 +1577,14 @@ window.saveMenuItem = async function() {
         price,
         weight,
         desc,
-        img: imgUrl || nextMenu[index].img
+        img: updatedImg
       };
       nextMenu[index] = targetItem;
     }
   } else {
     const maxOrder = nextMenu.reduce((max, item) => Math.max(max, item.orderIndex ?? 0), -1);
     targetItem = {
-      id: Date.now(),
+      id: versionTag,
       orderIndex: maxOrder + 1,
       category: cat,
       name,
@@ -1335,7 +1601,7 @@ window.saveMenuItem = async function() {
   try {
     await getMenuItemsCollection().doc(String(targetItem.id)).set(targetItem);
     menuData = nextMenu;
-    localStorage.setItem('moka_menu', JSON.stringify(menuData));
+    saveLightweightMetaCache('moka_menu', menuData);
     resetMenuForm();
     renderCategories();
     renderMenu();
@@ -1352,7 +1618,7 @@ window.deleteMenuItem = async function(id) {
     try {
       await getMenuItemsCollection().doc(String(id)).delete();
       menuData = nextMenu;
-      localStorage.setItem('moka_menu', JSON.stringify(menuData));
+      saveLightweightMetaCache('moka_menu', menuData);
       renderCategories();
       renderMenu();
       renderAdminLists();
@@ -1362,28 +1628,67 @@ window.deleteMenuItem = async function(id) {
   }
 };
 
-window.addNewPromoItem = async function() {
+window.startEditPromoItem = function(id) {
+  const promo = promoData.find(p => p.id == id);
+  if (!promo) return;
+
+  document.getElementById('editPromoId').value = promo.id;
+  document.getElementById('promoTitleInput').value = promo.title;
+  document.getElementById('promoDescInput').value = promo.desc;
+  document.getElementById('promoImageFile').value = '';
+
+  document.getElementById('promoFormModeTitle').textContent = `Редактирование: ${promo.title}`;
+  document.getElementById('savePromoBtn').textContent = 'Сохранить изменения акции';
+  document.getElementById('cancelPromoEditBtn').style.display = 'block';
+};
+
+window.resetPromoForm = function() {
+  document.getElementById('editPromoId').value = '';
+  document.getElementById('promoTitleInput').value = '';
+  document.getElementById('promoDescInput').value = '';
+  document.getElementById('promoImageFile').value = '';
+
+  document.getElementById('promoFormModeTitle').textContent = 'Добавить акцию / баннер';
+  document.getElementById('savePromoBtn').textContent = 'Опубликовать акцию';
+  document.getElementById('cancelPromoEditBtn').style.display = 'none';
+};
+
+window.savePromoItem = async function() {
+  const editId = document.getElementById('editPromoId').value;
   const title = document.getElementById('promoTitleInput').value.trim();
   const desc = document.getElementById('promoDescInput').value.trim();
   const fileInput = document.getElementById('promoImageFile');
 
   if (!title || !desc) { alert('Заполните заголовок и описание акции!'); return; }
 
-  let imgUrl = P(4342445);
+  const versionTag = Date.now();
+  let imgUrl = editId ? null : bustImageCache(P(4342445), versionTag);
   if (fileInput.files && fileInput.files[0]) {
     imgUrl = await compressImageFile(fileInput.files[0]);
   }
 
-  const nextPromo = [...promoData, { id: Date.now(), title, desc, img: imgUrl }];
+  let nextPromo = promoData.map(p => ({ ...p }));
+  if (editId) {
+    const idx = nextPromo.findIndex(p => p.id == editId);
+    if (idx > -1) {
+      nextPromo[idx] = {
+        ...nextPromo[idx],
+        title,
+        desc,
+        img: imgUrl || bustImageCache(nextPromo[idx].img, versionTag)
+      };
+    }
+  } else {
+    nextPromo.push({ id: versionTag, title, desc, img: imgUrl });
+  }
+
   try {
     await persistCollection('promo', 'moka_promo', nextPromo);
     promoData = nextPromo;
-    document.getElementById('promoTitleInput').value = '';
-    document.getElementById('promoDescInput').value = '';
-    fileInput.value = '';
+    resetPromoForm();
     renderPromos();
     renderAdminLists();
-    alert('Акция опубликована для всех пользователей!');
+    alert(editId ? 'Акция обновлена для всех пользователей!' : 'Акция опубликована для всех пользователей!');
   } catch (err) {
     alert('Облако не приняло акцию: проверь размер картинки');
   }
@@ -1407,12 +1712,13 @@ window.addNewFeatureItem = async function() {
 
   if (!title) { alert('Введите название услуги или атмосферы!'); return; }
 
-  let imgUrl = P(1571458);
+  const versionTag = Date.now();
+  let imgUrl = bustImageCache(P(1571458), versionTag);
   if (fileInput.files && fileInput.files[0]) {
     imgUrl = await compressImageFile(fileInput.files[0]);
   }
 
-  const nextFeatures = [...featuresData, { id: Date.now(), title, img: imgUrl }];
+  const nextFeatures = [...featuresData, { id: versionTag, title, img: imgUrl }];
   try {
     await persistCollection('features', 'moka_features', nextFeatures);
     featuresData = nextFeatures;
@@ -1444,7 +1750,7 @@ window.sendWaiterCall = function() {
   const table = document.getElementById('waiterTableNum').value.trim();
   const reason = document.getElementById('waiterReason').value;
   if (!table) { alert('Укажите номер столика!'); return; }
-  window.open(`https://wa.me/996880880216?text=${encodeURIComponent(`🛎 ВЫЗОВ ОФИЦИАНТА В MOKA!\n▪️ Столик: ${table}\n▪️ Запрос: ${reason}`)}`, '_blank');
+  window.open(`https://wa.me/${WA_PHONE}?text=${encodeURIComponent(`🛎 ВЫЗОВ ОФИЦИАНТА В MOKA!\n▪️ Столик: ${table}\n▪️ Запрос: ${reason}`)}`, '_blank');
   closeWaiterModal();
 };
 
@@ -1465,7 +1771,7 @@ window.sendBookingRequest = function() {
   let text = `📅 БРОНЬ СТОЛИКА В MOKA!\n▪️ Гость: ${namePhone}\n▪️ Когда: ${dateTime}\n▪️ Гостей: ${persons}\n▪️ Атмосфера: ${musicVibe}\n▪️ Зона: ${zoneType}\n`;
   if (note) text += `▪️ Пожелания: ${note}\n`;
 
-  window.open(`https://wa.me/996880880216?text=${encodeURIComponent(text)}`, '_blank');
+  window.open(`https://wa.me/${WA_PHONE}?text=${encodeURIComponent(text)}`, '_blank');
   closeBookingModal();
 };
 
@@ -1482,13 +1788,13 @@ document.getElementById('submitOrderBtn').onclick = () => {
   const orderType = document.getElementById('orderType').value;
   const deliveryTime = document.getElementById('deliveryTimeOpt').value;
   let locationInfo = orderType === 'qr' ? `☕️ Столик: ${document.getElementById('tableNumber').value.trim()}` : `🚗 Доставка: ${document.getElementById('deliveryAddress').value.trim()}`;
-  
+
   const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
   let text = `🎄 ЗАКАЗ В MOKA!\n👤 Клиент: ${clientInfo}\n${locationInfo}\n🕒 Время: ${deliveryTime}\n\n`;
   cart.forEach(i => { text += `▪️ ${i.name} x${i.qty} — ${i.price * i.qty} сом\n`; if (i.note) text += `   └ Пожелание: ${i.note}\n`; });
   text += `\n💰 ИТОГО: ${total} сом`;
 
-  window.open(`https://wa.me/996880880216?text=${encodeURIComponent(text)}`, '_blank');
+  window.open(`https://wa.me/${WA_PHONE}?text=${encodeURIComponent(text)}`, '_blank');
   cart = []; updateCart(); cartModal.classList.remove('open');
 };
 
@@ -1498,12 +1804,15 @@ function googleTranslateElementInit() {
   new google.translate.TranslateElement({ pageLanguage: 'ru', autoDisplay: false }, 'google_translate_element');
 }
 
-createSnow();
-checkWorkStatus();
-initLanguageDropdown();
+loadCachedInitialData();
 renderPromos();
 renderCategories();
 renderMenu();
+renderAdminLists();
+
+createSnow();
+checkWorkStatus();
+initLanguageDropdown();
 syncAllDataFromCloud();
 </script>
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
